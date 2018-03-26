@@ -21,9 +21,15 @@
     <ClInclude Include="TText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mystructures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

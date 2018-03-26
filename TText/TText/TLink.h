@@ -25,5 +25,20 @@ public:
 			strcpy(str, s);
 	}
 
+	char* getStr()
+	{
+		return str;
+	}
+
+	TLink* getPDown()
+	{
+		return pDown;
+	}
+
+	TLink* getPNext()
+	{
+		return pNext;
+	}
+
 	~TLink(){}
 };

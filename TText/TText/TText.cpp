@@ -1,28 +1,34 @@
 #include "TText.h"
 
-void TText::gonxtlnk()
+int TText::gonxtlnk()
 {
 	if (pCurr->pNext != nullptr) {
 		st.push(pCurr);
 		pCurr = pCurr->pNext;
+		return 1;
 	}
+	else return 0;
 }
 
-void TText::godwnlnk()
+int TText::godwnlnk()
 {
 	if (pCurr->pDown != nullptr) {
 		st.push(pCurr);
 		pCurr = pCurr->pDown;
+		return 1;
 	}
+	else return 0;
 }
 
-void TText::goprvlnk()
+int TText::goprvlnk()
 {
 	if (!st.empty()) 
 	{
 		pCurr = st.top();
 		st.pop();
+		return 1;
 	}
+	else return 0;
 }
 
 void TText::insnxtline(char*str)
@@ -33,7 +39,8 @@ void TText::insnxtline(char*str)
 
 void TText::insnxtsection(char*str)
 {
-	
+	TLink *p = new TLink(str, nullptr, pCurr->pDown);
+	pCurr->pDown = p;
 	
 }
 
@@ -111,5 +118,61 @@ void TText::gonext()
 			st.push(pCurr->pNext);
 		if (pCurr->pDown != nullptr)
 			st.push(pCurr->pDown);
+	}
+}
+
+TLink *TText::ReadRec(std::ifstream& file) 
+{
+	char buf[80];
+	TLink *tmp, *first = nullptr;
+
+	while (!file.eof()) 
+	{
+		file.getline(buf, 80, '\n');
+
+		if (buf[0] == '}')
+			break;
+		else if (buf[0] == '{')
+			tmp->pDown = ReadRec(file);
+		else if (first == nullptr) 
+		{
+			first = new TLink(buf);
+			tmp = first;
+		}
+		else
+		{
+			tmp->pNext = new TLink(buf);
+			tmp = tmp->pNext;
+		}
+	}
+
+	return first;
+}
+
+void TText::Read(char *fn)
+{
+	std::ifstream ifs(fn);
+	if (fn)
+		pCurr = pFirst = ReadRec(ifs);
+}
+
+
+void TText::View()
+{
+	lvl = 0;
+	viewText(pFirst);
+}
+
+void TText::viewText(TLink *ptr)
+{
+	if (ptr) {
+		for (int i = 0; i < lvl; i++)
+			std::cout << "\t";
+		
+		std::cout << ptr->getStr() << std::endl;
+		lvl++;
+		viewText(ptr->getPDown());
+		lvl--;
+		viewText(ptr->getPNext());
 	}
 }
