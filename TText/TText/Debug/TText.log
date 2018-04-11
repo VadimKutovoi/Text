@@ -1,7 +1,8 @@
 ﻿  main.cpp
-c:\users\sirku\desktop\gitprojects\text\ttext\ttext\tlink.h(22): warning C4129: 'o': unrecognized character escape sequence
-c:\users\sirku\desktop\gitprojects\text\ttext\ttext\tlink.h(25): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\kutovoj.v\desktop\text\text\ttext\ttext\tlink.h(24): warning C4129: 'o': unrecognized character escape sequence
+c:\users\kutovoj.v\desktop\text\text\ttext\ttext\tlink.h(27): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
-c:\users\sirku\desktop\gitprojects\text\ttext\ttext\mystructures.h(33): warning C4715: 'getkey': not all control paths return a value
-  TText.vcxproj -> C:\Users\sirku\Desktop\GitProjects\Text\TText\Debug\TText.exe
-  TText.vcxproj -> C:\Users\sirku\Desktop\GitProjects\Text\TText\Debug\TText.pdb (Full PDB)
+c:\users\kutovoj.v\desktop\text\text\ttext\ttext\main.cpp(33): warning C4129: 'k': unrecognized character escape sequence
+c:\users\kutovoj.v\desktop\text\text\ttext\ttext\mystructures.h(33): warning C4715: 'getkey': not all control paths return a value
+  TText.vcxproj -> C:\Users\kutovoj.v\Desktop\Text\Text\TText\Debug\TText.exe
+  TText.vcxproj -> C:\Users\kutovoj.v\Desktop\Text\Text\TText\Debug\TText.pdb (Full PDB)

@@ -109,17 +109,37 @@ bool TText::isend()
 
 void TText::gonext()
 {
-	pCurr = st.top();
-	st.pop();
-	
+	if (!st.empty()) {
+		pCurr = st.top();
+		st.pop();
+	}
+
 	if (pCurr != pFirst)
-	{
+	{ 
+		if (pCurr->pDown != nullptr) 
+			st.push(pCurr->pDown);
+
 		if (pCurr->pNext != nullptr)
 			st.push(pCurr->pNext);
-		if (pCurr->pDown != nullptr)
-			st.push(pCurr->pDown);
 	}
 }
+
+//void TText::gonextlnk()
+//{
+//	if (pCurr->pDown != nullptr) 
+//	{
+//		st.push(pCurr->pDown);
+//		pCurr = pCurr->pDown;
+//		return;
+//	}
+//	else
+//		if (pCurr->pNext != nullptr)
+//		{
+//			st.push(pCurr->pNext);
+//			pCurr = pCurr->pNext;
+//			return;
+//		}
+//}
 
 TLink *TText::ReadRec(std::ifstream& file) 
 {
@@ -176,3 +196,27 @@ void TText::viewText(TLink *ptr)
 		viewText(ptr->getPNext());
 	}
 }
+
+//void TText::SaveText(TLink* tmp, ofstream& f)
+//{
+//	f << tmp->str << '\n';
+//	if (tmp->pDown != NULL)
+//	{
+//		f << "{\n";
+//		SaveText(tmp->pDown, f);
+//		f << "}\n";
+//	}
+//	if (tmp->pNext != NULL)
+//		SaveText(tmp->pNext, f);
+//}
+
+//
+//void TText::Save(char* fn)
+//{
+//	ofstream ofs(fn, ios::in);
+//	if (ofs.is_open())
+//	{
+//		SaveText(pFirst, ofs);
+//		ofs.close();
+//	}
+//}
