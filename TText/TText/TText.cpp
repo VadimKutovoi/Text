@@ -31,7 +31,7 @@ int TText::goprvlnk()
 	else return 0;
 }
 
-void TText::insnxtline(char*str)
+void TText::insnxtline(char* str)
 {
 	TLink*tl = new TLink(str, pCurr->pNext, nullptr);
 	pCurr->pNext = tl;
@@ -185,6 +185,18 @@ void TText::View()
 
 void TText::viewText(TLink *ptr)
 {
+	if (ptr == pCurr) {
+		
+		HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(Console, (WORD)((0 << 4) | 4));
+
+		std::cout << "_";
+
+		Console = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(Console, (WORD)((0 << 4) | 15));
+
+	}
+
 	if (ptr) {
 		for (int i = 0; i < lvl; i++)
 			std::cout << "\t";
@@ -197,26 +209,26 @@ void TText::viewText(TLink *ptr)
 	}
 }
 
-//void TText::SaveText(TLink* tmp, ofstream& f)
-//{
-//	f << tmp->str << '\n';
-//	if (tmp->pDown != NULL)
-//	{
-//		f << "{\n";
-//		SaveText(tmp->pDown, f);
-//		f << "}\n";
-//	}
-//	if (tmp->pNext != NULL)
-//		SaveText(tmp->pNext, f);
-//}
+void TText::SaveText(TLink* tmp, std::ofstream& f)
+{
+	f << tmp->str << '\n';
+	if (tmp->pDown != NULL)
+	{
+		f << "{\n";
+		SaveText(tmp->pDown, f);
+		f << "}\n";
+	}
+	if (tmp->pNext != NULL)
+		SaveText(tmp->pNext, f);
+}
 
-//
-//void TText::Save(char* fn)
-//{
-//	ofstream ofs(fn, ios::in);
-//	if (ofs.is_open())
-//	{
-//		SaveText(pFirst, ofs);
-//		ofs.close();
-//	}
-//}
+
+void TText::Save(char* fn)
+{
+	std::ofstream ofs(fn, std::ios::in);
+	if (ofs.is_open())
+	{
+		SaveText(pFirst, ofs);
+		ofs.close();
+	}
+}

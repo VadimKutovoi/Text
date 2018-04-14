@@ -3,6 +3,7 @@
 #include <stack>
 #include <fstream>
 #include <iostream>
+#include <Windows.h>
 
 class TText
 {
@@ -13,7 +14,7 @@ class TText
 public:
 	TText(){}
 	
-	//методы добавления.удаления
+	
 
 	/*void gonextlnk();*/
 	int gonxtlnk(); //Сдвиг указателя pNext вниз
@@ -24,31 +25,22 @@ public:
 	void insdwnline(char*str); //Вставить строку по указателю pDown
 	void delnxt(); //Удалить строку по указателю pNext
 	void deldwn(); //Удалить строку по указателю pDown
-	void MarkCurr()
-	{
-		pCurr->flag = true;
-	}
-
-	//методы копирования
+	void MarkCurr() { pCurr->flag = true; }
 
 	TLink* cpyrec(TLink*tmp); //Рекурсивное копирование 
 	TLink* cpy(); //Возвращает результат cpyrec для указателя pFirst
-
-	//методы итерирования
 
 	void reset(); 
 	bool isend();
 	void gonext();
 
-	//Чтение и запись
-
 	TLink*ReadRec(std::ifstream& file);
 	void Read(char *fn);
 
-	//Отображение
-
 	void View();
 	void viewText(TLink *ptr);
+	void Save(char* fn);
+	void SaveText(TLink* tmp, std::ofstream& f);
 
 
 };
