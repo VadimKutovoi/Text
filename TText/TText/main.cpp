@@ -34,14 +34,16 @@ char* to_char(std::string str)
 
 void main()
 {	
+	TLink::InitMem(100);
+
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	HANDLE hin = GetStdHandle(STD_INPUT_HANDLE);
 	
 	TText text;
-	char file[] = "C:\\Users\\sirku\\Desktop\\GitProjects\\Text\\TText\\test.txt";
+	char file[] = "C:\\Users\\kutovoj.v\\Desktop\\Text\\TText\\test.txt";
 
 	int inputkey;
-	int x = 0, y = 0;
+	int x = 0, y = 0, free;
 
 	std::string title = "Text Editor";
 	std::string tmp;
@@ -61,6 +63,7 @@ void main()
 		<< "4 - delete header\n"
 		<< "5 - delete body\n"
 		<< "6 - save\n"
+		<< "7 - print free mem\n"
 		<< "0 - help\n"
 		<< std::endl;
 
@@ -104,9 +107,12 @@ void main()
 				<< "4 - delete header\n"
 				<< "5 - delete body\n"
 				<< "6 - save\n"
+				<< "7 - view free mem\n"
+				<< "8 - clear mem\n"
 				<< std::endl;
 			break;
 		case 49: // 1 - new header 
+			Sleep(100);
 			clrscr();
 			std::cout << "Enter header name\n";
 			std::cin >> tmp;
@@ -115,6 +121,7 @@ void main()
 			text.View();
 			break;
 		case 50: // 2 - new body 
+			Sleep(100);
 			clrscr();
 			std::cout << "Enter body\n";
 			std::cin >> tmp;
@@ -123,6 +130,13 @@ void main()
 			text.View();
 			break;
 		case 51: // 3 - new section 
+			Sleep(100);
+			clrscr();
+			std::cout << "Enter section\n";
+			std::cin >> tmp;
+			if (tmp == "") tmp = "NewSection";
+			text.insnxtsection(to_char(tmp));
+			text.View();
 			break;
 		case 52: // 4 - delete header
 			clrscr();
@@ -135,7 +149,17 @@ void main()
 			text.View();
 			break;
 		case 54: // 6 - save
-			text.Save();
+			text.Save("C:\\Users\\kutovoj.v\\Desktop\\Text\\TText\\testsave.txt");
+			break;
+		case 55: // 7 - free mem
+			clrscr();
+			free = TLink::PrintFree(text);
+			std::cout << "free mem" << free << std::endl;
+			text.View();
+			break;
+		case 56: // 8 clear mem
+			TLink::MemClean(text);
+			break;
 		}
 		Sleep(300);
 	}

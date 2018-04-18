@@ -41,7 +41,6 @@ void TText::insnxtsection(char*str)
 {
 	TLink *p = new TLink(str, nullptr, pCurr->pDown);
 	pCurr->pDown = p;
-	
 }
 
 void TText::insdwnline(char*str)
